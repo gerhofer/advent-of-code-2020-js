@@ -3,16 +3,14 @@ const fileSystem = require('fs');
 let uniqueSum = fileSystem.readFileSync('input6.txt', 'utf-8')
     .split('\r\n\r\n')
     .map(groups => new Set(groups
-        .split('\n') // [ ['a', 'b', 'c'], ['a', 'b']]
-        //[ 'a', 'b', 'c', 'a', 'b']
+        .split('\n')
         .flatMap(person => person.split('')
             .filter(answer => answer !== '' && answer !== '\r')
         )
-    ).size // [ 3, 1, 1, 3]
+    ).size
     ).reduce((a, b) => a + b, 0);
 
 console.log(uniqueSum);
-
 
 let allSum = fileSystem.readFileSync('input6.txt', 'utf-8')
     .split('\r\n\r\n')
